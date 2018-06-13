@@ -9,7 +9,7 @@ BIN = ./bin
 CPPFLAGS = -O0 -Wall -pedantic -std=c++11 -I$(INC)
 OBJECTS = $(OBJ)/main.o
 
-PROG = $(BIN)/iemanjao
+PROG = $(BIN)/iemanja
 
 $(OBJ)/main.o: 
 	$(CC) $(CPPFLAGS) -c $(SRC)/main.cpp -o $@

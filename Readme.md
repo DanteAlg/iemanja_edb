@@ -1,4 +1,4 @@
-# Iemanjao EDB
+# Iemanja EDB
 
 1. Run `make all`
 
