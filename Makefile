@@ -7,9 +7,12 @@ OBJ = ./build
 BIN = ./bin
 
 CPPFLAGS = -O0 -Wall -pedantic -std=c++11 -I$(INC)
-OBJECTS = $(OBJ)/main.o
+OBJECTS = $(OBJ)/main.o $(OBJ)/expressao_executor.o
 
 PROG = $(BIN)/iemanja
+
+$(OBJ)/expressao_executor.o: $(INC)/expressao_executor.h
+	$(CC) $(CPPFLAGS) -c $(SRC)/expressao_executor.cpp -o $@
 
 $(OBJ)/main.o: 
 	$(CC) $(CPPFLAGS) -c $(SRC)/main.cpp -o $@
