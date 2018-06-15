@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cctype>
 #include <stack>
-#include "expressaovalidador.h"
+#include "expressao_validador.h"
 
 using namespace std;
 
@@ -60,7 +60,15 @@ bool ExpressaoValidador::ValidarFormacao(string expressao)
 	for (unsigned int i = 0; i < expressao.length(); i++)
 	{
 		if(isdigit(expressao[i]) || expressao[i] == '.')
+		{
 			numeros += expressao[i];
+			if(expressao[i] == '.' && i == expressao.length()-1)
+			{
+				posicao = ((expressao.length() - (expressao.length() - i)) - numeros.size() + 1);
+				cout << "Erro 2: Número inválido encontrado a partir da posição " << posicao << " da expressão " << expressao << endl;
+			    return false;
+			}			
+		}
 		else
 		{
 			if(isspace(expressao[i]) || expressao[i]=='+' || expressao[i]=='-' || expressao[i]=='*' || expressao[i]=='/' || expressao[i]=='^' || expressao[i]=='(' || expressao[i]==')')
@@ -128,6 +136,34 @@ bool ExpressaoValidador::ValidarParenteses(string expressao)
 
 bool ExpressaoValidador::ValidarExpressao(string expressao)
 {
-	//cout<<expressao<<endl;
+	string aux = expressao;
+
+	for (auto i = aux.begin(); i != aux.end(); ++i)
+	{
+		if(std::isspace(*i))
+			aux.erase(i--);
+	}
+
+	for (unsigned int i = 0; i < aux.length(); i++)
+	{
+		if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (i == 0 || i == aux.length() - 1))
+		{
+			cout << "Erro 4: Expressão infixa malformada na expressão " << expressao << endl;
+			return false;			
+		}
+		else
+			if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (aux[i-1]=='+' || aux[i-1]=='-' || aux[i-1]=='*' || aux[i-1]=='/' || aux[i-1]=='^'))
+			{
+				cout << "Erro 4: Expressão infixa malformada na expressão " << expressao << endl;
+				return false;				
+			}
+			else
+				if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (aux[i+1]=='+' || aux[i+1]=='-' || aux[i+1]=='*' || aux[i+1]=='/' || aux[i+1]=='^'))
+				{
+					cout << "Erro 4: Expressão infixa malformada na expressão " << expressao << endl;
+					return false;
+				}
+	}
+
 	return true;
 }
