@@ -10,11 +10,12 @@ int main(int argc, char const *argv[])
 	string teste;
 	cout<<"Bem vindo ao IEMANJÁ !!"<<endl;
 	ifstream in_file("../tests/teste.txt");
+	ExpressaoValidador expressao;
 	while(!in_file.eof())
 	{
 		getline(in_file, teste);
-		ExpressaoValidador expressao(teste);
-		expressao.Validar();
+		if(expressao.Validar(teste))
+			cout<<"Expressao "<<teste<<" ok!"<<endl;
 	}	
 
 	return 0;
