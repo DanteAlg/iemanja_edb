@@ -4,30 +4,17 @@
 #include <stack>
 #include "expressao_validador.h"
 
-using namespace std;
-
-ExpressaoValidador::ExpressaoValidador(){}
-
-ExpressaoValidador::~ExpressaoValidador(){}
-
 // Método que irá fazer todas as verificações, através de métodos da classe
-bool ExpressaoValidador::Validar(string expressao)
+bool ExpressaoValidador::validar(string _expressao)
 {
-	if(!ValidarCaractere(expressao))
-	 	return false; 
-	if(!ValidarFormacao(expressao))
-		return false;
-	if(!ValidarParenteses(expressao))
-		return false;
-	if(!ValidarExpressao(expressao))
-		return false;
-
-	return true; 
+	expressao = _expressao;
+	return (validar_caractere() && validar_formacao() &&
+					validar_parenteses() && validar_expressao());
 }
 
 // Método que irá verficar os caracteres.
 // Se encontrar algum invalido exibirá mensagem de erro e retornará false, senão, retornará true.
-bool ExpressaoValidador::ValidarCaractere(string expressao)
+bool ExpressaoValidador::validar_caractere()
 {
 	for (unsigned i = 0; i<expressao.length();)
 	{
@@ -36,7 +23,7 @@ bool ExpressaoValidador::ValidarCaractere(string expressao)
 		else
 		{
 			cout << "Erro 1: Caracter invalido encontrado na posição " << i+1 << " da expressão " << expressao << endl;
-			return false; 
+			return false;
 		}
 	}
 	return true;
@@ -52,7 +39,7 @@ bool ExpressaoValidador::ValidarCaractere(string expressao)
 // Caso só exista o ponto incremento em uma auxiliar de quantidade de pontos
 // Assim, se no final da verficação daquela string tiver mais que um ponto também exibo erro, seria o caso de ter dois pontos no meio do número
 // Caso passe por tudo, retorno verdadeiro
-bool ExpressaoValidador::ValidarFormacao(string expressao)
+bool ExpressaoValidador::validar_formacao()
 {
 	string numeros = "";
 	int qtdPontos = 0;
@@ -68,7 +55,7 @@ bool ExpressaoValidador::ValidarFormacao(string expressao)
 				posicao = (expressao.length() - numeros.size() + 1);
 				cout << "Erro 2: Número inválido encontrado a partir da posição " << posicao << " da expressão " << expressao << endl;
 			    return false;
-			}			
+			}
 		}
 		else
 		{
@@ -111,9 +98,9 @@ bool ExpressaoValidador::ValidarFormacao(string expressao)
 //Método que irá verficar o balanceamento de parenteses
 //Se encontrar parentese desbalanceado exibirá mensagem de erro e retornará false
 //Senão retornará true
-bool ExpressaoValidador::ValidarParenteses(string expressao)
+bool ExpressaoValidador::validar_parenteses()
 {
-	stack<char> parenteses; 
+	stack<char> parenteses;
 	for (unsigned i = 0; i < expressao.length(); ++i)
 	{
 		if(expressao[i]=='(')
@@ -121,7 +108,7 @@ bool ExpressaoValidador::ValidarParenteses(string expressao)
 		if(expressao[i]==')')
 		{
 			if(parenteses.empty())
-			{	
+			{
 				cout << "Erro 3: Os parênteses da expressão "<<expressao<<" estão desbalanceados" << endl;
 				return false;
 			}
@@ -134,7 +121,7 @@ bool ExpressaoValidador::ValidarParenteses(string expressao)
 			cout << "Erro 3: Os parênteses da expressão "<<expressao<<" estão desbalanceados"<< endl;
 			return false;
 		}
-		else	
+		else
 			return true;
 }
 
@@ -145,7 +132,7 @@ bool ExpressaoValidador::ValidarParenteses(string expressao)
 // Segunda situação: ter um operador no caracter anterior
 // Terceira situação: ter um operador no caractere seguinte
 // Essas duas últimas resulta em operadores seguidos na expressão, o que não é permitido
-bool ExpressaoValidador::ValidarExpressao(string expressao)
+bool ExpressaoValidador::validar_expressao()
 {
 	string aux = expressao;
 
@@ -160,13 +147,13 @@ bool ExpressaoValidador::ValidarExpressao(string expressao)
 		if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (i == 0 || i == aux.length() - 1))
 		{
 			cout << "Erro 4: Expressão infixa malformada na expressão " << expressao << endl;
-			return false;			
+			return false;
 		}
 		else
 			if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (aux[i-1]=='+' || aux[i-1]=='-' || aux[i-1]=='*' || aux[i-1]=='/' || aux[i-1]=='^'))
 			{
 				cout << "Erro 4: Expressão infixa malformada na expressão " << expressao << endl;
-				return false;				
+				return false;
 			}
 			else
 				if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (aux[i+1]=='+' || aux[i+1]=='-' || aux[i+1]=='*' || aux[i+1]=='/' || aux[i+1]=='^'))

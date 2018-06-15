@@ -24,6 +24,7 @@ $(PROG): $(OBJECTS)
 prepare:
 	mkdir -p $(BIN)
 	mkdir -p $(OBJ)
+
 clean:
 	rm -r $(OBJ)
 	rm -r $(BIN)
