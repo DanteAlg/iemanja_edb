@@ -45,6 +45,7 @@ bool ExpressaoValidador::ValidarCaractere(string expressao)
 // Método que irá verficar a formação dos números.
 // Se encontrar alguma invalida exibirá mensagem de erro e retornará false, caso não, retornará true.
 // Vou verificando de caractere a caractere da expressão, caso tenha seja numéro ou ponto coloco na string numeros
+// Caso seja ponto e esteja no final da expressão já exibo mensagem de erro
 // Caso seja um espaço ou operando e a string numero não estiver vazia, significa que já encontrei um número
 // Percorro essa string numeros para verificar sua formação, utilizei as possiblidades que não devem acontecer através dos pontos
 // Se existir caractere ponto no começo ou fim já exibo mensagem de erro
@@ -134,6 +135,13 @@ bool ExpressaoValidador::ValidarParenteses(string expressao)
 			return true;
 }
 
+// Método irá verificar se a ofrmação infixa da expressão está correta
+// Primeiramente retiro todos os espaços para facilitar a verficação
+// Veerifico três situações que ocasiona erro na formação
+// Primeira situação: ter operador no ínicio da expressão ou final
+// Segunda situação: ter um operador no caracter anterior
+// Terceira situação: ter um operador no caractere seguinte
+// Essas duas últimas resulta em operadores seguidos na expressão, o que não é permitido
 bool ExpressaoValidador::ValidarExpressao(string expressao)
 {
 	string aux = expressao;
