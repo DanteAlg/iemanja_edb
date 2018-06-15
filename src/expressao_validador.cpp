@@ -6,12 +6,12 @@
 
 using namespace std;
 
-ExpressaoValidador::ExpressaoValidador(string exp): expressao(exp){}
+ExpressaoValidador::ExpressaoValidador(){}
 
 ExpressaoValidador::~ExpressaoValidador(){}
 
-// Método que irá fazer todas as verificações, através de métodos estáticos da classe
-bool ExpressaoValidador::Validar()
+// Método que irá fazer todas as verificações, através de métodos da classe
+bool ExpressaoValidador::Validar(string expressao)
 {
 	if(!ValidarCaractere(expressao))
 	 	return false; 
@@ -108,6 +108,9 @@ bool ExpressaoValidador::ValidarFormacao(string expressao)
 	return true;
 }
 
+//Método que irá verficar o balanceamento de parenteses
+//Se encontrar parentese desbalanceado exibirá mensagem de erro e retornará false
+//Senão retornará true
 bool ExpressaoValidador::ValidarParenteses(string expressao)
 {
 	stack<char> parenteses; 
@@ -119,7 +122,7 @@ bool ExpressaoValidador::ValidarParenteses(string expressao)
 		{
 			if(parenteses.empty())
 			{	
-				cout << "Erro 3: Os parênteses da expressão estão desbalanceados" << endl;
+				cout << "Erro 3: Os parênteses da expressão "<<expressao<<" estão desbalanceados" << endl;
 				return false;
 			}
 			else
@@ -128,7 +131,7 @@ bool ExpressaoValidador::ValidarParenteses(string expressao)
 	}
 		if(!parenteses.empty())
 		{
-			cout << "Erro 3: Os parênteses da expressão estão desbalanceados" << endl;
+			cout << "Erro 3: Os parênteses da expressão "<<expressao<<" estão desbalanceados"<< endl;
 			return false;
 		}
 		else	
