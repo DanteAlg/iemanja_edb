@@ -1,26 +1,33 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+
 #include "expressao_validador.h"
+#include "expressao_executor.h"
 
 using namespace std;
 
 int main(int argc, char const *argv[])
 {
-	cout << "Bem vindo ao IEMANJÁ !!" << endl;
+	cout << "Bem vindo ao IEMANJÁ !!" << endl << endl;
 
 	string teste;
-	ifstream in_file("../tests/teste.txt");
+	ExpressaoValidador ex_validador;
+	ExpressaoExecutor ex_executor;
 
-	ExpressaoValidador expressao;
+	ifstream file("tests/teste.txt");
 
-	while(!in_file.eof())
-	{
-		getline(in_file, teste);
+	if (file) {
+		while(!file.eof())
+		{
+			getline(file, teste, '\n');
 
-		if(expressao.validar(teste))
-			cout << "Expressao " << teste << " ok!" << endl;
+			if(ex_validador.validar(teste))
+				cout << teste << " = " << ex_executor.resultado(teste) << endl;
+		}
 	}
+	else
+		cout << "Erro ao carregar o arquivo, verique a rota no parâmetro" << endl;
 
 	return 0;
 }

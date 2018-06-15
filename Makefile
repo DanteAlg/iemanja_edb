@@ -7,16 +7,19 @@ OBJ = ./build
 BIN = ./bin
 
 CPPFLAGS = -O0 -Wall -pedantic -std=c++11 -I$(INC)
-OBJECTS = $(OBJ)/main.o $(OBJ)/expressao_validador.o
+OBJECTS = $(OBJ)/main.o $(OBJ)/expressao_validador.o $(OBJ)/expressao_executor.o
 PROG = iemanja
 
 all: prepare $(PROG)
-	
-$(OBJ)/main.o:$(OBJ)/expressao_validador.o
-	$(CC) $(CPPFLAGS) -c $(SRC)/main.cpp -o $@
 
 $(OBJ)/expressao_validador.o:
 	$(CC) $(CPPFLAGS) -c $(SRC)/expressao_validador.cpp -o $@
+
+$(OBJ)/expressao_executor.o:
+	$(CC) $(CPPFLAGS) -c $(SRC)/expressao_executor.cpp -o $@
+
+$(OBJ)/main.o: $(OBJ)/expressao_validador.o $(OBJ)/expressao_executor.o
+	$(CC) $(CPPFLAGS) -c $(SRC)/main.cpp -o $@
 
 $(PROG): $(OBJECTS)
 	$(CC) $(CPPFLAGS) $(OBJECTS) -o $(BIN)/$@

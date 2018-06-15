@@ -8,13 +8,13 @@
 bool ExpressaoValidador::validar(string _expressao)
 {
 	expressao = _expressao;
-	return (validar_caractere() && validar_formacao() &&
-					validar_parenteses() && validar_expressao());
+	return (validarCaractere() && validarFormacao() &&
+					validarParenteses() && validarExpressao());
 }
 
 // Método que irá verficar os caracteres.
 // Se encontrar algum invalido exibirá mensagem de erro e retornará false, senão, retornará true.
-bool ExpressaoValidador::validar_caractere()
+bool ExpressaoValidador::validarCaractere()
 {
 	for (unsigned i = 0; i<expressao.length();)
 	{
@@ -39,7 +39,7 @@ bool ExpressaoValidador::validar_caractere()
 // Caso só exista o ponto incremento em uma auxiliar de quantidade de pontos
 // Assim, se no final da verficação daquela string tiver mais que um ponto também exibo erro, seria o caso de ter dois pontos no meio do número
 // Caso passe por tudo, retorno verdadeiro
-bool ExpressaoValidador::validar_formacao()
+bool ExpressaoValidador::validarFormacao()
 {
 	string numeros = "";
 	int qtdPontos = 0;
@@ -98,7 +98,7 @@ bool ExpressaoValidador::validar_formacao()
 //Método que irá verficar o balanceamento de parenteses
 //Se encontrar parentese desbalanceado exibirá mensagem de erro e retornará false
 //Senão retornará true
-bool ExpressaoValidador::validar_parenteses()
+bool ExpressaoValidador::validarParenteses()
 {
 	stack<char> parenteses;
 	for (unsigned i = 0; i < expressao.length(); ++i)
@@ -132,7 +132,7 @@ bool ExpressaoValidador::validar_parenteses()
 // Segunda situação: ter um operador no caracter anterior
 // Terceira situação: ter um operador no caractere seguinte
 // Essas duas últimas resulta em operadores seguidos na expressão, o que não é permitido
-bool ExpressaoValidador::validar_expressao()
+bool ExpressaoValidador::validarExpressao()
 {
 	string aux = expressao;
 

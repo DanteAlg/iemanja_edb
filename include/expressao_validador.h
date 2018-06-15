@@ -15,11 +15,11 @@ public:
 	~ExpressaoValidador() {};
 
 	bool validar(string _expressao);
-	bool validar_caractere();
-	bool validar_formacao();
-	bool validar_parenteses();
-	bool validar_expressao();
+	bool validarCaractere();
+	bool validarFormacao();
+	bool validarParenteses();
+	bool validarExpressao();
 
-}; 
+};
 
 #endif

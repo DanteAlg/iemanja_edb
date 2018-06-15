@@ -1,14 +1,17 @@
 #include "expressao_executor.h"
 
-double ExpressaoExecutor::calcular(std::string _expressao) {
-  expressao = _expressao;
-  converterPosFixa();
-  return executarPosFixa();
+double ExpressaoExecutor::resultado(string _expressao)
+{
+    expressao = _expressao;
+
+    converterPosFixa();
+    return executarPosFixa();
 }
 
 // Private
 
-int ExpressaoExecutor::operPriori(char operador) {
+int ExpressaoExecutor::operPriori(char operador)
+{
   if (operador == ')' || operador == '(')
     return 1;
   else if (operador == '^')
@@ -19,9 +22,11 @@ int ExpressaoExecutor::operPriori(char operador) {
     return 4;
 }
 
-void ExpressaoExecutor::converterPosFixa() {
+void ExpressaoExecutor::converterPosFixa()
+{
 }
 
-double ExpressaoExecutor::executarPosFixa() {
+double ExpressaoExecutor::executarPosFixa()
+{
   return 0.0;
 }

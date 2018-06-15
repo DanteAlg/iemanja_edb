@@ -4,16 +4,19 @@
 #include <iostream>
 #include <string>
 
-class ExpressaoExecutor {
+using namespace std;
+
+class ExpressaoExecutor
+{
   private:
     // Lista<std::string> elementos;
-    std::string expressao;
+    string expressao;
 
   public:
     ExpressaoExecutor() {};
     ~ExpressaoExecutor() {};
 
-    double calcular(std::string _expressao);
+    double resultado(string _expressao);
 
   private:
     int operPriori(char operador);
