@@ -65,7 +65,7 @@ bool ExpressaoValidador::ValidarFormacao(string expressao)
 			numeros += expressao[i];
 			if(expressao[i] == '.' && i == expressao.length()-1)
 			{
-				posicao = ((expressao.length() - (expressao.length() - i)) - numeros.size() + 1);
+				posicao = (expressao.length() - numeros.size() + 1);
 				cout << "Erro 2: Número inválido encontrado a partir da posição " << posicao << " da expressão " << expressao << endl;
 			    return false;
 			}			
