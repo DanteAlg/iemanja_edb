@@ -2,7 +2,6 @@
 #define EXPRESSAOVALIDADOR_H
 #include <string>
 
-
 class ExpressaoValidador
 {
 public:
@@ -13,5 +12,7 @@ public:
 	bool ValidarFormacao(std::string expressao);
 	bool ValidarParenteses(std::string expressao);
 	bool ValidarExpressao(std::string expressao);
+
 }; 
+
 #endif
