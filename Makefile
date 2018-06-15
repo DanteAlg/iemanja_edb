@@ -10,7 +10,7 @@ CPPFLAGS = -O0 -Wall -pedantic -std=c++11 -I$(INC)
 OBJECTS = $(OBJ)/main.o $(OBJ)/expressao_validador.o
 PROG = iemanja
 
-all: dirs $(PROG)
+all: prepare $(PROG)
 	
 $(OBJ)/main.o:$(OBJ)/expressao_validador.o
 	$(CC) $(CPPFLAGS) -c $(SRC)/main.cpp -o $@
@@ -21,7 +21,7 @@ $(OBJ)/expressao_validador.o:
 $(PROG): $(OBJECTS)
 	$(CC) $(CPPFLAGS) $(OBJECTS) -o $(BIN)/$@
 
-dirs:
+prepare:
 	mkdir -p $(BIN)
 	mkdir -p $(OBJ)
 clean:
