@@ -7,18 +7,23 @@ OBJ = ./build
 BIN = ./bin
 
 CPPFLAGS = -O0 -Wall -pedantic -std=c++11 -I$(INC)
-OBJECTS = $(OBJ)/main.o $(OBJ)/expressao_executor.o
+OBJECTS = $(OBJ)/main.o $(OBJ)/expressao_validador.o
+PROG = iemanja
 
-PROG = $(BIN)/iemanja
-
-$(OBJ)/expressao_executor.o: $(INC)/expressao_executor.h
-	$(CC) $(CPPFLAGS) -c $(SRC)/expressao_executor.cpp -o $@
-
-$(OBJ)/main.o: 
+all: dirs $(PROG)
+	
+$(OBJ)/main.o:$(OBJ)/expressao_validador.o
 	$(CC) $(CPPFLAGS) -c $(SRC)/main.cpp -o $@
 
-all: $(OBJECTS)
-	$(CC) $(CPPFLAGS) -o $(PROG) $(OBJECTS)
+$(OBJ)/expressao_validador.o:
+	$(CC) $(CPPFLAGS) -c $(SRC)/expressao_validador.cpp -o $@
 
+$(PROG): $(OBJECTS)
+	$(CC) $(CPPFLAGS) $(OBJECTS) -o $(BIN)/$@
+
+dirs:
+	mkdir -p $(BIN)
+	mkdir -p $(OBJ)
 clean:
-	rm -f $(PROG) $(OBJECTS)
+	rm -r $(OBJ)
+	rm -r $(BIN)
