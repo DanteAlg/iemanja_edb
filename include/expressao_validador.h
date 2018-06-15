@@ -5,12 +5,10 @@
 
 class ExpressaoValidador
 {
-private:
-	std::string expressao;
 public:
-	ExpressaoValidador(std::string exp);
+	ExpressaoValidador();
 	~ExpressaoValidador();
-	bool Validar();
+	bool Validar(std::string expressao);
 	bool ValidarCaractere(std::string expressao);
 	bool ValidarFormacao(std::string expressao);
 	bool ValidarParenteses(std::string expressao);
