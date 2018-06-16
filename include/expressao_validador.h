@@ -1,9 +1,10 @@
 #ifndef EXPRESSAOVALIDADOR_H
 #define EXPRESSAOVALIDADOR_H
+#include "listacircular.h"
 
 #include <string>
+using std::string;
 
-using namespace std;
 
 class ExpressaoValidador
 {
