@@ -4,6 +4,8 @@
 #include <stack>
 #include "expressao_validador.h"
 
+using namespace std;
+
 // Método que irá fazer todas as verificações, através de métodos da classe
 bool ExpressaoValidador::validar(string _expressao)
 {
