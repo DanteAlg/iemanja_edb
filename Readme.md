@@ -25,8 +25,9 @@
 [x] (1,0) Solução estruturada
 - Utilizar estrutura de pastas com makefile para compilar a aplicação
 --- 
-[]  (1,5) Criar classes de Pilha e Fila utilizando uma lista circular simples encadeada
+[x]  (1,5) Criar classes de Pilha e Fila utilizando uma lista circular simples encadeada 
 - As classes devem ser feitas com templates para receber qualquer tipo de dado
+- Lembrar de fazer o destrutor das classes[](sempre tenho o hábito de esquecer essa parte)
 ---
 []  Criar classe ExpressaoLeitor que recebe o caminho do arquivo de testes
 - O constructor da classe deve receber o caminho para o arquivo ex.: "tests/success.txt"
