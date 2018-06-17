@@ -83,7 +83,8 @@ void ExpressaoExecutor::converterPosFixa()
   }
 
   cout << endl;
-  for(int i = 0; i <= elementos.size(); i++) {
+  int n = elementos.size();
+  for(int i = 0; i <= n ; i++) {
     cout << "-------> Teste pos-fixa: " << elementos.front() << endl;
     elementos.pop();
   }
