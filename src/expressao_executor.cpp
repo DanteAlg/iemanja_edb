@@ -1,5 +1,5 @@
 #include "expressao_executor.h"
-
+#include  <cmath>
 double ExpressaoExecutor::resultado(string _expressao)
 {
     expressao = _expressao;
@@ -83,14 +83,78 @@ void ExpressaoExecutor::converterPosFixa()
   }
 
   cout << endl;
+  /*
   int n = elementos.size();
   for(int i = 0; i < n ; i++) {
     cout << "-------> Teste pos-fixa: " << elementos.front() << endl;
     elementos.pop();
+  }*/
+}
+
+bool ExpressaoExecutor::ehNuemro(std::string num){
+  try
+    {
+        std::stod(num);
+    }
+    catch(...)
+    {
+        return false;
+    }
+    return true;
+}
+
+bool ExpressaoExecutor::ehOperador(std::string  op){
+  return std::string("+-^/*").find(op[0]) != std::string::npos;
+}
+
+double ExpressaoExecutor::calcOperacao(std::string op, double valor_1, double valor_2){
+  double resultado = 0;
+  switch(op[0]){
+    case '^' : 
+      resultado = pow(valor_1, valor_2);
+      break;
+    case '*' : 
+      resultado =  valor_1 * valor_2;
+      break;
+    case '/' : // TODO, tratar essa parte também com uma exceção 
+      if(valor_2 == 0){
+        std::cerr << "Divisão por zero" << std::endl;
+        exit(1);
+      }
+      resultado = valor_1/valor_2;
+      break;
+
+    case '+' : 
+      resultado = valor_1 + valor_2;
+      break;
+    case '-' : 
+      resultado =  valor_1 - valor_2;
+      break;
   }
+  
+  return resultado;
 }
 
 double ExpressaoExecutor::executarPosFixa()
 {
-  return 0.0;
+  myTads::stack<double> pilha; 
+  int n = elementos.size();
+  for(int i = 0; i < n ; i++){ // percorrendo toda a lista 
+
+    if(ehNuemro(elementos.front())){ // será verdade quando um ítem da lista for um número 
+      double num = std::stod(elementos.front()); 
+      pilha.push(num);
+      elementos.pop();
+      
+    }else if(ehOperador(elementos.front())){ // será verdade quando um ítem da lista for uma operação 
+      double valor1 = pilha.top(); // valor1 é o último elemento da pilha
+      pilha.pop(); // remove o topo da pilha 
+      double valor2 = pilha.top(); // valor2 é agora é o novo último elemento da pilha
+      pilha.pop();// remove o topo da pilha 
+      pilha.push(calcOperacao( elementos.front(), valor2, valor1  ));
+      std::cout <<valor1 << elementos.front() << valor2 << "=" <<calcOperacao( elementos.front(), valor1, valor2  ) << "\n";
+      elementos.pop();
+    }
+  }
+  return pilha.top();
 }
