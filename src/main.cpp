@@ -15,7 +15,8 @@ int main(int argc, char const *argv[])
 	ExpressaoValidador ex_validador;
 	ExpressaoExecutor ex_executor;
 
-	ifstream file("../tests/teste.txt");
+	// ifstream file(argv[1]);
+	ifstream file("tests/teste.txt");
 
 	if (file) {
 		while(!file.eof())

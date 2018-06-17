@@ -3,8 +3,11 @@
 #include "listacircular.h"
 
 #include <string>
-using std::string;
 
+#include "stack.h"
+
+using namespace std;
+using namespace myTads;
 
 class ExpressaoValidador
 {
