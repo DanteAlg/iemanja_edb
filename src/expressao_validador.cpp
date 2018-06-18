@@ -1,4 +1,15 @@
+//Implentação dos métodos da classe expressao_validador
+#include <iostream>
 #include "expressao_validador.h"
+
+using namespace std;
+using namespace myTads;
+
+//Construtor padrão
+ExpressaoValidador::ExpressaoValidador(){}
+
+//Destrutor padrão
+ExpressaoValidador::~ExpressaoValidador(){}
 
 // Método que irá fazer todas as verificações, através de métodos da classe
 bool ExpressaoValidador::validar(string _expressao)

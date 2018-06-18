@@ -1,13 +1,10 @@
+//Definição da classe expressao_validador
 #ifndef EXPRESSAOVALIDADOR_H
 #define EXPRESSAOVALIDADOR_H
-#include "listacircular.h"
 
 #include <string>
-
+#include "listacircular.h"
 #include "stack.h"
-
-using namespace std;
-using namespace myTads;
 
 class ExpressaoValidador
 {
@@ -15,10 +12,10 @@ private:
 	string expressao;
 
 public:
-	ExpressaoValidador() {};
-	~ExpressaoValidador() {};
+	ExpressaoValidador();
+	~ExpressaoValidador();
 
-	bool validar(string _expressao);
+	bool validar(std::string _expressao);
 	bool validarCaractere();
 	bool validarFormacao();
 	bool validarParenteses();

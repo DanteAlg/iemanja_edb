@@ -1,3 +1,4 @@
+//Definição da classe expressao_validador
 #ifndef _EXPRESSAO_EXECUTOR
 #define _EXPRESSAO_EXECUTOR
 
@@ -8,31 +9,26 @@
 #include "stack.h"
 #include "queue.h"
 
-using namespace std;
 using namespace myTads;
 
 class ExpressaoExecutor
 {
 private:
   queue<string> elementos;
-  string expressao;
+  std::string expressao;
 
 public:
-  ExpressaoExecutor() {};
-  ~ExpressaoExecutor() {};
+  ExpressaoExecutor();
+  ~ExpressaoExecutor();
 
-  double resultado(string _expressao);
+  double resultado(std::string _expressao);
 
 private:
-  int operPriori(string operador);
-  void converterPosFixa();
-  // Verifica se uma string passada como argumento é um número 
-  bool ehNuemro(std::string num);
-  // Verifica se uma string passada como argumento é um operador 
-  bool ehOperador(std::string  op);
-  // Calcular uma operação binário passada com argumento, e dois valores para serem operados 
+  int operPriori(std::string operador);
+  void converterPosFixa();   
+  bool ehNuemro(std::string num);  
+  bool ehOperador(std::string  op);  
   double calcOperacao(std::string op, double valor_1, double valor_2);
-
   double executarPosFixa();
 };
 

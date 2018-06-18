@@ -1,3 +1,4 @@
+//Definição da função principal, exibindo o resultado das operações  
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -15,8 +16,8 @@ int main(int argc, char const *argv[])
 	ExpressaoValidador ex_validador;
 	ExpressaoExecutor ex_executor;
 
-	// ifstream file(argv[1]);
-	ifstream file("tests/teste.txt");
+	// instaciação e chamada do arquivo de leitura ou file(argv[1])?
+	ifstream file("../op/operacoes.txt");
 
 	if (file) {
 		while(!file.eof())

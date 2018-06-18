@@ -1,5 +1,14 @@
+//Implentação dos métodos da classe expressao_validador
 #include "expressao_executor.h"
 #include  <cmath>
+
+//Construtor Padrão
+ExpressaoExecutor:: ExpressaoExecutor(){}
+
+//Destrutor Padrão
+ExpressaoExecutor:: ~ExpressaoExecutor(){}
+
+// Receberá a expressão e chamará os métodos de conversão e execução da expressão em sua forma pós-fixa
 double ExpressaoExecutor::resultado(string _expressao)
 {
     expressao = _expressao;
@@ -19,6 +28,7 @@ int ExpressaoExecutor::operPriori(string operador)
   else return 1;
 }
 
+// Método de converção da expressão para sua forma pós-fixa
 // O for itera a expressão inteira
 // Verifica primeiro se é um número, caso seja adiciona no buffer
 // Caso não seja um número o buffer é adicionado na lista que representa a expressão pos-fixada
@@ -91,6 +101,7 @@ void ExpressaoExecutor::converterPosFixa()
   }*/
 }
 
+// Verifica se uma string passada como argumento é um número
 bool ExpressaoExecutor::ehNuemro(std::string num){
   try
     {
@@ -103,10 +114,12 @@ bool ExpressaoExecutor::ehNuemro(std::string num){
     return true;
 }
 
+// Verifica se uma string passada como argumento é um operador 
 bool ExpressaoExecutor::ehOperador(std::string  op){
   return std::string("+-^/*").find(op[0]) != std::string::npos;
 }
 
+// Calcular uma operação binário passada com argumento, e dois valores para serem operados 
 double ExpressaoExecutor::calcOperacao(std::string op, double valor_1, double valor_2){
   double resultado = 0;
   switch(op[0]){
@@ -135,6 +148,7 @@ double ExpressaoExecutor::calcOperacao(std::string op, double valor_1, double va
   return resultado;
 }
 
+// Método de execução da expressão em sua forma pós-fixa
 double ExpressaoExecutor::executarPosFixa()
 {
   myTads::stack<double> pilha; 
