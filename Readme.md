@@ -24,18 +24,12 @@
 
 [x] (1,0) Solução estruturada
 - Utilizar estrutura de pastas com makefile para compilar a aplicação
---- 
-[x]  (1,5) Criar classes de Pilha e Fila utilizando uma lista circular simples encadeada 
+---
+[x]  (1,5) Criar classes de Pilha e Fila utilizando uma lista circular simples encadeada
 - As classes devem ser feitas com templates para receber qualquer tipo de dado
 [] Lembrar de fazer o destrutor das classes (sempre tenho o hábito de esquecer essa parte)
 ---
-[]  Criar classe ExpressaoLeitor que recebe o caminho do arquivo de testes
-- O constructor da classe deve receber o caminho para o arquivo ex.: "tests/success.txt"
-- Deve usar uma instancia de "ExpressaoValidador" para verificar a validade da expressão
-- Caso esteja correta e retorne "true" deve executar o "ExpressaoExecutor"
-- Caso esteja errada e retorne "false" deve passar para proxima linha/expressão.
----
-[]  (1,0) Criar uma classe ExpressaoValidador para receber uma lista de strings com expressoes
+[x]  (1,0) Criar uma classe ExpressaoValidador para receber uma lista de strings com expressoes
 - O construtor da classe não precisa receber dados.
 - Criar método "validarCaractere" que verifica se existem caracteres inválidos. [Válidos: númericos e de operações `() + - * / ^ .`]. Escreve "Erro 1 ..." e retorna "false"
 - Criar método "validarFormacao" que verifica a formação dos números ex.: "1.25.8". Escreve "Erro 2 ..." e retorna "false"
@@ -43,13 +37,13 @@
 - Criar método "validarExpressao" que verifica a validade da expressão ex.: "2 + 5 -". Escreve "Erro 4 ..." e retorna "false"
 - Criar método "validar" que recebe a string da expressão e executa todos os métodos da classe. Retorna "true" ou "false" para expressão
 ---
-[]  (4,5) Criar uma classe ExpressaoExecutor para receber uma string com as expressões corretas
+[x]  (4,5) Criar uma classe ExpressaoExecutor para receber uma string com as expressões corretas
 - O construtor da classe não precisa receber dados.
 - (1,0) Criar método "operPriori" que recebe uma operação `() + - * / ^ .` e retorna um valor para sua prioridade `1: (), 2: ^, 3: */, 4: +-`
 - (2,0) Criar método "converterPosFixa" que converte a string com a expressão em forma infixa e retorna uma salva na lista com a expressão em forma pos-fixa
 - (1,5) Criar método "executarPosFixa" que lê a lista da expressão pos-fixa e executa as operações. Retorna o resultado da expressão.
 - Criar método "calcular" que recebe a string da expressão e executa os métodos da classe. Escreve o valor da expressão na tela e não retorna dado.
 ---
-[]  (1,0) Comentar os métodos e classes
+[x]  (1,0) Comentar os métodos e classes
 ---
 []  (1,0) Efetividade do projeto
