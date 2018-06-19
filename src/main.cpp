@@ -16,8 +16,7 @@ int main(int argc, char const *argv[])
 	ExpressaoValidador ex_validador;
 	ExpressaoExecutor ex_executor;
 
-	// instaciação e chamada do arquivo de leitura ou file(argv[1])?
-	ifstream file("../op/operacoes.txt");
+	ifstream file(argv[1]);
 
 	if (file) {
 		while(!file.eof())
