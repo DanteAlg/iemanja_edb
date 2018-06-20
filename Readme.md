@@ -27,7 +27,7 @@
 ---
 [x]  (1,5) Criar classes de Pilha e Fila utilizando uma lista circular simples encadeada
 - As classes devem ser feitas com templates para receber qualquer tipo de dado
-[] Lembrar de fazer o destrutor das classes (sempre tenho o hábito de esquecer essa parte)
+[x] Lembrar de fazer o destrutor das classes (sempre tenho o hábito de esquecer essa parte)
 ---
 [x]  (1,0) Criar uma classe ExpressaoValidador para receber uma lista de strings com expressoes
 - O construtor da classe não precisa receber dados.
