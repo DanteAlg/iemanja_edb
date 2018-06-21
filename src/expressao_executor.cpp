@@ -129,7 +129,7 @@ double ExpressaoExecutor::calcOperacao(std::string op, double valor_1, double va
     case '*' : 
       resultado =  valor_1 * valor_2;
       break;
-    case '/' : // TODO, tratar essa parte também com uma exceção 
+    case '/' :  
       if(valor_2 == 0){
         std::cerr << "Divisão por zero" << std::endl;
         exit(1);
@@ -166,7 +166,6 @@ double ExpressaoExecutor::executarPosFixa()
       double valor2 = pilha.top(); // valor2 é agora é o novo último elemento da pilha
       pilha.pop();// remove o topo da pilha 
       pilha.push(calcOperacao( elementos.front(), valor2, valor1  ));
-      std::cout <<valor1 << elementos.front() << valor2 << "=" <<calcOperacao( elementos.front(), valor1, valor2  ) << "\n";
       elementos.pop();
     }
   }

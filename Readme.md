@@ -46,4 +46,4 @@
 ---
 [x]  (1,0) Comentar os métodos e classes
 ---
-[]  (1,0) Efetividade do projeto
+[x]  (1,0) Efetividade do projeto

@@ -17,44 +17,32 @@ namespace myTads{
 	template <typename T>
 	class list
 	{
-		/**@brief causa é  um ponteiro que ira apontar para o último Node da lista*/
+		// cauda é  um ponteiro que ira apontar para o último Node da lista
 		shared_ptr<Node<T>> cauda;
-		/**@breif O atributo tamanho mastra quantos elementos estão atualmente na lista */
+		// O atributo tamanho mastra quantos elementos estão atualmente na lista 
 		int tamanho;
-	public:
-		/**@brief Construtor padrão classe list*/
-		list();
-		/**@brief Destrutor classe list */
-		~list();
-		/**@brief Insere um elemento no ínicio da lista @return retorna true se não houve erro, caso contrário, retorna false  */
+	public:		
+		list();		
+		~list();		
 		bool push_front(T content);
-		/**@brief Insere um elemento no final da lista @return retorna true se não houve erro, caso contrário retorna false */
 		bool push_back(T content);
-		/**@brief Insere um elemento em uma posição passada n da lista. */
-	 	bool insert(unsigned int pos, T content);
-	 	/**@brief Remove o elemento que está no íncio da lista.@return retorna true se não houve erro, caso contrário, retorna false*/
-		bool pop_front();
-		/**@details Remove o lemento que está ao final da lista@return retorna true se não houve erro, caso contrário, retorna false*/
-		bool pop_back();
-		/**@details Remove o elemento na posição que foi recebida como parêmetro( lembra que o íncide inicia-se em 0).@return retorna true se não houve erro, caso contrário, retorna false*/
-		bool erase_at(unsigned int pos);
-		/**@brief Retorna o lemento em um índice passado */
-		T return_at(unsigned int pos);
-		/**@return retorna se a lista está ou não vázia */
-		bool empty();
-		/**@return retorna o size de lista, i.e., a quatidade de Node's */
-	    int size();
-	    /**@return retorna o primeiro elemento da lista, caso vázio retorna nullptr */
-	    T front();
-	    /**@return retorna o último elemento da lista, caso vázio retorna nullptr  */
+		bool insert(unsigned int pos, T content);
+	 	bool pop_front();		
+		bool pop_back();		
+		bool erase_at(unsigned int pos);		
+		T return_at(unsigned int pos);		
+		bool empty();		
+	    int size();	    
+	    T front();	    
 	    T back();
-		/**@details Sobrecarga do operador <<, @return retorna um std::ostream com todos os elementos da lista em uma linha separados por esparço*/
 		friend std::ostream& operator<< <T>( std::ostream&, list<T> const &l);
 	};
 
+	// Construtor padrão classe list
 	template <typename T>
 	list<T>::list(): cauda(nullptr), tamanho(0)  {}
 
+	// Destrutor classe list
 	template <typename T>
 	list<T>::~list() 
 	{
@@ -75,6 +63,7 @@ namespace myTads{
 
 	}
 
+	// Retorna se a lista está ou não vázia
 	template <typename T>
 	bool list<T>::empty()
 	{
@@ -82,11 +71,13 @@ namespace myTads{
 		return r; 
 	}
 
+	// Retorna o size de lista, isto é, a quatidade de Node's
 	template <typename T>
 	int list<T>::size() {
 		return this->tamanho;
 	}
 
+	//Insere um elemento no ínicio da lista, retorna true se não houve erro, caso contrário, retorna false
 	template <typename T>
 	bool list<T>:: push_front(T content) {
 		if (this->tamanho == 0) {
@@ -107,6 +98,7 @@ namespace myTads{
 		return true;
 	}
 
+	//Insere um elemento no final da lista, retorna true se não houve erro, caso contrário retorna false
 	template <typename T>
 	bool list<T>::push_back(T content) {
 		
@@ -126,6 +118,7 @@ namespace myTads{
 		return true;
 	}
 
+	// Insere um elemento em uma posição passada n da lista
 	template <typename T>
 	bool list<T>::insert(unsigned int pos, T content) {
 		if (pos<0 || pos>= tamanho) return false;
@@ -147,6 +140,8 @@ namespace myTads{
 		this->tamanho++;
 		return true;
 	}
+
+	// Retorna o lemento em um índice passado 
 	template <typename T>
 	T list<T>::return_at(unsigned int pos)
 	{
@@ -167,6 +162,7 @@ namespace myTads{
 		return atual->getValor();
 	}
 
+	// Remove o elemento que está no íncio da lista, retorna true se não houve erro, caso contrário, retorna false
 	template <typename T>
 	bool list<T>::pop_front() {
 		if (this->tamanho <= 0) //Será verdadeira quando a fila estiver vázia
@@ -189,6 +185,7 @@ namespace myTads{
 		}
 	}
 
+	// Remove o lemento que está ao final da lista,retorna true se não houve erro, caso contrário, retorna false
 	template <typename T>
 	bool list<T>::pop_back() {
 		if (this->cauda==nullptr ) return false;// Se lista vázia 
@@ -208,6 +205,7 @@ namespace myTads{
 		return true;
 	}
 
+	// Remove o elemento na posição que foi recebida como parêmetro( lembra que o índide inicia-se em 0),retorna true se não houve erro, caso contrário, retorna false
 	template <typename T>
 	bool list<T>::erase_at(unsigned int pos) {
 
@@ -241,10 +239,11 @@ namespace myTads{
 		return o;
 	}
 
+	// Retorna o primeiro elemento da lista, caso vázio retorna nullptr 
 	template <typename T>
 	T list<T>::front()
 	{
-		/**@TODO Colocar aqui uma exceção */
+		
 		if (this->tamanho <= 0) 
 		{ 
 			cout << "ERRO lista Vázio, O programa será finalizado \n";
@@ -256,10 +255,11 @@ namespace myTads{
 		}
 	}
 
+	// Retorna o último elemento da lista, caso vázio retorna nullptr  
 	template <typename T>
 	T list<T>::back()
 	{
-		/**@TODO Colocar aqui uma exceção */
+		
 		if (this->tamanho <= 0) 
 			{ 
 				cout << "ERRO lista Vázio, O programa será finalizado \n";

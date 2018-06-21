@@ -27,7 +27,9 @@ $(PROG): $(OBJECTS)
 prepare:
 	mkdir -p $(BIN)
 	mkdir -p $(OBJ)
+	@echo "Criação dos diretórios bin e obj executada!!" 
 
 clean:
 	rm -r $(OBJ)
 	rm -r $(BIN)
+	@echo "Remoção dos objetos e binários executada!!"

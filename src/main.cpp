@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-	cout << "Bem vindo ao IEMANJÁ !!" << endl << endl;
+	cout << endl <<"Bem vindo ao IEMANJÁ !!" << endl << endl;
 
 	string teste;
 	ExpressaoValidador ex_validador;

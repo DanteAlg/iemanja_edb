@@ -21,22 +21,14 @@ namespace myTads{
 		int tamanho;
 	public:
 		
-		queue();
-		
-		~queue();
-		
-		bool push(T content);
-		
-		bool pop();
-		
-		int size();
-		
-		bool empty();
-		
-		T front();
-		
-		T back();
-		
+		queue();		
+		~queue();		
+		bool push(T content);		
+		bool pop();		
+		int size();		
+		bool empty();		
+		T front();		
+		T back();		
 		friend std::ostream& operator<< <T>( std::ostream&, queue<T> const &l);
 	};
 

@@ -20,8 +20,7 @@ namespace myTads {
 		int tamanho;    
 	public:
 		stack();
-		~stack ();
-		
+		~stack ();		
 		bool empty();
 		T top ();
 		bool push ( T novo );

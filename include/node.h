@@ -18,8 +18,7 @@ namespace myTads{
 		T valor;
 		// Ponteiro que apontará para o próximo elemento no conteiner 
 		std::shared_ptr<Node<T>> proximo;
-	public:
-		
+	public:		
 		Node();		
 		Node(T content);		
 		~Node();		
