@@ -1,0 +1,13 @@
+IEMANJA - Identificador de Expressões Malformadas e Avaliador de Notações Julgadas Adequadas
+
+Como usar !!
+
+1- Compile o programa através do comando make;
+
+2- Adentre a pasta bin, através do comando cd bin;
+
+3- Execute o IEMANJA (./iemanja) juntamante com o caminho do arquivo das operações que deseja verificar e executar;
+
+4- Após executar e se desejas eliminar o IEMANJA, retorne a pasta raiz(cd ..) e execute make clean;
+
+Obrigado por usar o IEMANJA !!
