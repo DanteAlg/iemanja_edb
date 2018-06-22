@@ -39,7 +39,7 @@ int ExpressaoExecutor::operPriori(string operador)
 // Por fim, caso exista algo na pilha ela é desempilhada para a lista
 void ExpressaoExecutor::converterPosFixa()
 {
-  stack<string> operadores;
+  pilha<string> operadores;
   string buffer = "";
   string oper_buffer = "";
 
@@ -49,56 +49,50 @@ void ExpressaoExecutor::converterPosFixa()
       buffer += *it;
     else
     {
-      if (buffer != "") elementos.push(buffer);
-      buffer = "";
+      if (buffer != "") elementos.insere(buffer);
+        buffer = "";
+      
       oper_buffer = *it;
 
       if (*it == '(')
-        operadores.push(oper_buffer);
+        operadores.insere(oper_buffer);
+      
       else if (*it == ')')
       {
-        while (operadores.top() != "(")
+        while (operadores.topo() != "(")
         {
-          elementos.push(operadores.top());
-          operadores.pop();
+          elementos.insere(operadores.topo());
+          operadores.tira();
         }
 
-        operadores.pop(); // Remover o "(" da pilha
+        operadores.tira(); // Remover o "(" da pilha
       }
       else
       {
         if (*it != ' ')
         {
-          if (!operadores.empty())
+          if (!operadores.vazia())
           {
-            while (!operadores.empty() && operadores.top() != "(" && operPriori(operadores.top()) >= operPriori(oper_buffer))
+            while (!operadores.vazia() && operadores.topo() != "(" && operPriori(operadores.topo()) >= operPriori(oper_buffer))
             {
-              elementos.push(operadores.top());
-              operadores.pop();
+              elementos.insere(operadores.topo());
+              operadores.tira();
             }
           }
 
-          operadores.push(oper_buffer);
+          operadores.insere(oper_buffer);
         }
       }
     }
   }
 
-  if (buffer != "") elementos.push(buffer);
+  if (buffer != "") elementos.insere(buffer);
 
-  while(!operadores.empty())
+  while(!operadores.vazia())
   {
-    elementos.push(operadores.top());
-    operadores.pop();
+    elementos.insere(operadores.topo());
+    operadores.tira();
   }
-
-  cout << endl;
-  /*
-  int n = elementos.size();
-  for(int i = 0; i < n ; i++) {
-    cout << "-------> Teste pos-fixa: " << elementos.front() << endl;
-    elementos.pop();
-  }*/
 }
 
 // Verifica se uma string passada como argumento é um número
@@ -151,23 +145,23 @@ double ExpressaoExecutor::calcOperacao(std::string op, double valor_1, double va
 // Método de execução da expressão em sua forma pós-fixa
 double ExpressaoExecutor::executarPosFixa()
 {
-  myTads::stack<double> pilha; 
-  int n = elementos.size();
+  minhasTads::pilha<double> pilha; 
+  int n = elementos.tamanho();
   for(int i = 0; i < n ; i++){ // percorrendo toda a lista 
 
-    if(ehNuemro(elementos.front())){ // será verdade quando um ítem da lista for um número 
-      double num = std::stod(elementos.front()); 
-      pilha.push(num);
-      elementos.pop();
+    if(ehNuemro(elementos.frente())){ // será verdade quando um ítem da lista for um número 
+      double num = std::stod(elementos.frente()); 
+      pilha.insere(num);
+      elementos.tira();
       
-    }else if(ehOperador(elementos.front())){ // será verdade quando um ítem da lista for uma operação 
-      double valor1 = pilha.top(); // valor1 é o último elemento da pilha
-      pilha.pop(); // remove o topo da pilha 
-      double valor2 = pilha.top(); // valor2 é agora é o novo último elemento da pilha
-      pilha.pop();// remove o topo da pilha 
-      pilha.push(calcOperacao( elementos.front(), valor2, valor1  ));
-      elementos.pop();
+    }else if(ehOperador(elementos.frente())){ // será verdade quando um ítem da lista for uma operação 
+      double valor1 = pilha.topo(); // valor1 é o último elemento da pilha
+      pilha.tira(); // remove o topo da pilha 
+      double valor2 = pilha.topo(); // valor2 é agora é o novo último elemento da pilha
+      pilha.tira();// remove o topo da pilha 
+      pilha.insere(calcOperacao( elementos.frente(), valor2, valor1  ));
+      elementos.tira();
     }
   }
-  return pilha.top();
+  return pilha.topo();
 }

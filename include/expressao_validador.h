@@ -4,12 +4,12 @@
 
 #include <string>
 #include "listacircular.h"
-#include "stack.h"
+#include "pilha.h"
 
 class ExpressaoValidador
 {
 private:
-	string expressao;
+	std::string expressao;
 
 public:
 	ExpressaoValidador();

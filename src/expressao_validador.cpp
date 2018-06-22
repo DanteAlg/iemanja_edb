@@ -3,7 +3,7 @@
 #include "expressao_validador.h"
 
 using namespace std;
-using namespace myTads;
+using namespace minhasTads;
 
 //Construtor padrão
 ExpressaoValidador::ExpressaoValidador(){}
@@ -29,7 +29,7 @@ bool ExpressaoValidador::validarCaractere()
 			i++;
 		else
 		{
-			cout << "Na expressão: "<< expressao <<endl;
+			cout << "Na expressão "<< expressao <<endl;
 			cout << "Erro 1: Caracter invalido encontrado na posição " << i+1 << "!" <<  endl<<endl;
 			return false;
 		}
@@ -61,7 +61,7 @@ bool ExpressaoValidador::validarFormacao()
 			if(expressao[i] == '.' && i == expressao.length()-1)
 			{
 				posicao = (expressao.length() - numeros.size() + 1);
-				cout << "Na expressão: "<< expressao <<endl;
+				cout << "Na expressão "<< expressao <<endl;
 				cout << "Erro 2: Número inválido encontrado a partir da posição " << posicao << "!"<<endl<<endl;
 			    return false;
 			}
@@ -77,7 +77,7 @@ bool ExpressaoValidador::validarFormacao()
 						if(numeros[j] == '.' && (j == 0 || j == numeros.size()-1))
 						{
 							posicao = ((expressao.length() - (expressao.length() - i)) - numeros.size() + 1);
-							cout << "Na expressão: "<< expressao <<endl;
+							cout << "Na expressão "<< expressao <<endl;
 							cout << "Erro 2: Número inválido encontrado a partir da posição " << posicao << "!"<<endl<<endl;
 			    			return false;
 						}
@@ -91,7 +91,7 @@ bool ExpressaoValidador::validarFormacao()
 					if(qtdPontos > 1)
 					{
 						posicao = ((expressao.length() - (expressao.length() - i)) - numeros.size() + 1);
-						cout << "Na expressão: "<< expressao <<endl;
+						cout << "Na expressão "<< expressao <<endl;
 						cout << "Erro 2: Número inválido encontrado a partir da posição " << posicao << "!"<<endl<<endl;
 						return false;
 					}
@@ -111,26 +111,26 @@ bool ExpressaoValidador::validarFormacao()
 //Senão retornará true
 bool ExpressaoValidador::validarParenteses()
 {
-	stack<char> parenteses;
+	pilha<char> parenteses;
 	for (unsigned i = 0; i < expressao.length(); ++i)
 	{
 		if(expressao[i]=='(')
-			parenteses.push(expressao[i]);
+			parenteses.insere(expressao[i]);
 		if(expressao[i]==')')
 		{
-			if(parenteses.empty())
+			if(parenteses.vazia())
 			{
-				cout << "Na expressão: "<< expressao <<endl;
+				cout << "Na expressão "<< expressao <<endl;
 				cout << "Erro 3: Os parênteses da expressão estão desbalanceados!" << endl<<endl;
 				return false;
 			}
 			else
-				parenteses.pop();
+				parenteses.tira();
 		}
 	}
-		if(!parenteses.empty())
+		if(!parenteses.vazia())
 		{
-			cout << "Na expressão: "<< expressao <<endl;
+			cout << "Na expressão "<< expressao <<endl;
 			cout << "Erro 3: Os parênteses da expressão estão desbalanceados!" << endl<<endl;
 			return false;
 		}
@@ -159,21 +159,21 @@ bool ExpressaoValidador::validarExpressao()
 	{
 		if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (i == 0 || i == aux.length() - 1))
 		{
-			cout << "Na expressão: "<< expressao <<endl;
+			cout << "Na expressão "<< expressao <<endl;
 			cout << "Erro 4: Expressão infixa malformada!"<< endl<<endl;
 			return false;
 		}
 		else
 			if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (aux[i-1]=='+' || aux[i-1]=='-' || aux[i-1]=='*' || aux[i-1]=='/' || aux[i-1]=='^'))
 			{
-				cout << "Na expressão: "<< expressao <<endl;
+				cout << "Na expressão "<< expressao <<endl;
 				cout << "Erro 4: Expressão infixa malformada!"<< endl<<endl;
 				return false;
 			}
 			else
 				if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (aux[i+1]=='+' || aux[i+1]=='-' || aux[i+1]=='*' || aux[i+1]=='/' || aux[i+1]=='^'))
 				{
-					cout << "Na expressão: "<< expressao <<endl;
+					cout << "Na expressão "<< expressao <<endl;
 					cout << "Erro 4: Expressão infixa malformada!"<< endl<<endl;
 					return false;
 				}

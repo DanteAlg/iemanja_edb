@@ -6,15 +6,15 @@
 #include <iostream>
 #include <cctype>
 
-#include "stack.h"
-#include "queue.h"
+#include "pilha.h"
+#include "fila.h"
 
-using namespace myTads;
+using namespace minhasTads;
 
 class ExpressaoExecutor
 {
 private:
-  queue<string> elementos;
+  fila<string> elementos;
   std::string expressao;
 
 public:

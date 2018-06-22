@@ -16,16 +16,21 @@ int main(int argc, char const *argv[])
 	ExpressaoValidador ex_validador;
 	ExpressaoExecutor ex_executor;
 
-	ifstream file(argv[1]);
+	ifstream arquivo(argv[1]);
 
-	if (file) {
-		while(!file.eof())
+	if (arquivo) 
+	{
+		while(!arquivo.eof())
 		{
-			getline(file, teste, '\n');
+			getline(arquivo, teste, '\n');
 
 			if(ex_validador.validar(teste))
-				cout << teste << " = " << ex_executor.resultado(teste) << endl;
+			{	
+				cout << "Na expressão " << teste << endl;
+				cout << "Resultado = " << ex_executor.resultado(teste) << endl<<endl;
+			}
 		}
+	
 	}
 	else
 		cout << "Erro ao carregar o arquivo, verique a rota no parâmetro" << endl;
