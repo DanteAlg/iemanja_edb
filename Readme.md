@@ -3,6 +3,12 @@
 1. Run `make all`
 2. Exec `./bin/iemanja op/operacoes.txt`
 
+## Colaboradores
+- ANDRECIO COSTA BEZERRA
+- DANTE ALIGHIERI MIRANDA DOS SANTOS
+- FELIPE TIBERIO MACIEL BARBOSA
+- MATHEUS ALLAN DE OLIVEIRA
+
 ## Saida do arquivo op/operacoes:
 ```
 Na expressão 10 * (30 / ( 2 * 3 + 4) + 15@)
