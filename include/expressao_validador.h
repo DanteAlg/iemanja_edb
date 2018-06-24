@@ -10,6 +10,7 @@ class ExpressaoValidador
 {
 private:
 	std::string expressao;
+	int expressao_tam;
 
 public:
 	ExpressaoValidador();

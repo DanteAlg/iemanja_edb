@@ -15,21 +15,20 @@ ExpressaoValidador::~ExpressaoValidador(){}
 bool ExpressaoValidador::validar(string _expressao)
 {
 	expressao = _expressao;
+	expressao_tam = expressao.size();
+
 	return (validarCaractere() && validarFormacao() &&
-					validarParenteses() && validarExpressao());
+			validarParenteses() && validarExpressao());
 }
 
 // Método que irá verficar os caracteres.
 // Se encontrar algum invalido exibirá mensagem de erro e retornará false, senão, retornará true.
 bool ExpressaoValidador::validarCaractere()
 {
-	for (unsigned i = 0; i<expressao.length();)
+	for (unsigned i = 0; i < expressao_tam; i++)
 	{
-		if(isdigit(expressao[i]) || isspace(expressao[i]) || expressao[i]=='+' || expressao[i]=='-' || expressao[i]=='*' || expressao[i]=='/' || expressao[i]=='^' || expressao[i]=='(' || expressao[i]==')' || expressao[i]=='.')
-			i++;
-		else
+		if (!(isdigit(expressao[i]) || isspace(expressao[i]) || expressao[i]=='+' || expressao[i]=='-' || expressao[i]=='*' || expressao[i]=='/' || expressao[i]=='^' || expressao[i]=='(' || expressao[i]==')' || expressao[i]=='.'))
 		{
-			cout << "Na expressão "<< expressao <<endl;
 			cout << "Erro 1: Caracter invalido encontrado na posição " << i+1 << "!" <<  endl<<endl;
 			return false;
 		}
@@ -53,15 +52,14 @@ bool ExpressaoValidador::validarFormacao()
 	int qtdPontos = 0;
 	int posicao;
 
-	for (unsigned int i = 0; i < expressao.length(); i++)
+	for (unsigned int i = 0; i < expressao_tam; i++)
 	{
 		if(isdigit(expressao[i]) || expressao[i] == '.')
 		{
 			numeros += expressao[i];
-			if(expressao[i] == '.' && i == expressao.length()-1)
+			if(expressao[i] == '.' && i == expressao_tam-1)
 			{
-				posicao = (expressao.length() - numeros.size() + 1);
-				cout << "Na expressão "<< expressao <<endl;
+				posicao = (expressao_tam - numeros.size() + 1);
 				cout << "Erro 2: Número inválido encontrado a partir da posição " << posicao << "!"<<endl<<endl;
 			    return false;
 			}
@@ -76,8 +74,7 @@ bool ExpressaoValidador::validarFormacao()
 					{
 						if(numeros[j] == '.' && (j == 0 || j == numeros.size()-1))
 						{
-							posicao = ((expressao.length() - (expressao.length() - i)) - numeros.size() + 1);
-							cout << "Na expressão "<< expressao <<endl;
+							posicao = ((expressao_tam - (expressao_tam - i)) - numeros.size() + 1);
 							cout << "Erro 2: Número inválido encontrado a partir da posição " << posicao << "!"<<endl<<endl;
 			    			return false;
 						}
@@ -90,8 +87,7 @@ bool ExpressaoValidador::validarFormacao()
 
 					if(qtdPontos > 1)
 					{
-						posicao = ((expressao.length() - (expressao.length() - i)) - numeros.size() + 1);
-						cout << "Na expressão "<< expressao <<endl;
+						posicao = ((expressao_tam - (expressao_tam - i)) - numeros.size() + 1);
 						cout << "Erro 2: Número inválido encontrado a partir da posição " << posicao << "!"<<endl<<endl;
 						return false;
 					}
@@ -112,7 +108,7 @@ bool ExpressaoValidador::validarFormacao()
 bool ExpressaoValidador::validarParenteses()
 {
 	pilha<char> parenteses;
-	for (unsigned i = 0; i < expressao.length(); ++i)
+	for (unsigned i = 0; i < expressao_tam; ++i)
 	{
 		if(expressao[i]=='(')
 			parenteses.insere(expressao[i]);
@@ -120,7 +116,6 @@ bool ExpressaoValidador::validarParenteses()
 		{
 			if(parenteses.vazia())
 			{
-				cout << "Na expressão "<< expressao <<endl;
 				cout << "Erro 3: Os parênteses da expressão estão desbalanceados!" << endl<<endl;
 				return false;
 			}
@@ -130,7 +125,6 @@ bool ExpressaoValidador::validarParenteses()
 	}
 		if(!parenteses.vazia())
 		{
-			cout << "Na expressão "<< expressao <<endl;
 			cout << "Erro 3: Os parênteses da expressão estão desbalanceados!" << endl<<endl;
 			return false;
 		}
@@ -138,7 +132,7 @@ bool ExpressaoValidador::validarParenteses()
 			return true;
 }
 
-// Método irá verificar se a ofrmação infixa da expressão está correta
+// Método irá verificar se a forma infixa da expressão está correta
 // Primeiramente retiro todos os espaços para facilitar a verficação
 // Veerifico três situações que ocasiona erro na formação
 // Primeira situação: ter operador no ínicio da expressão ou final
@@ -159,21 +153,18 @@ bool ExpressaoValidador::validarExpressao()
 	{
 		if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (i == 0 || i == aux.length() - 1))
 		{
-			cout << "Na expressão "<< expressao <<endl;
 			cout << "Erro 4: Expressão infixa malformada!"<< endl<<endl;
 			return false;
 		}
 		else
 			if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (aux[i-1]=='+' || aux[i-1]=='-' || aux[i-1]=='*' || aux[i-1]=='/' || aux[i-1]=='^'))
 			{
-				cout << "Na expressão "<< expressao <<endl;
 				cout << "Erro 4: Expressão infixa malformada!"<< endl<<endl;
 				return false;
 			}
 			else
 				if((aux[i]=='+' || aux[i]=='-' || aux[i]=='*' || aux[i]=='/' || aux[i]=='^') && (aux[i+1]=='+' || aux[i+1]=='-' || aux[i+1]=='*' || aux[i+1]=='/' || aux[i+1]=='^'))
 				{
-					cout << "Na expressão "<< expressao <<endl;
 					cout << "Erro 4: Expressão infixa malformada!"<< endl<<endl;
 					return false;
 				}

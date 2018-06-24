@@ -8,6 +8,9 @@
 
 using namespace std;
 
+// ./bin/iemanja caminho_do_arquivo
+// Executa as validações e/ou operações em cada linha
+// Caso seja a ultima linha (Linha em branco) não executa
 int main(int argc, char const *argv[])
 {
 	cout << endl <<"Bem vindo ao IEMANJÁ !!" << endl << endl;
@@ -24,10 +27,11 @@ int main(int argc, char const *argv[])
 		{
 			getline(arquivo, teste, '\n');
 
-			if(ex_validador.validar(teste))
-			{	
-				cout << "Na expressão " << teste << endl;
-				cout << "Resultado = " << ex_executor.resultado(teste) << endl<<endl;
+			if (teste != "") {
+				cout << "Expressão " << teste << endl;
+
+				if(ex_validador.validar(teste))
+					cout << "Resultado = " << ex_executor.resultado(teste) << endl<<endl;
 			}
 		}
 	
